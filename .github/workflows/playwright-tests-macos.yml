@@ -1,12 +1,13 @@
 name: Playwright Tests on MacOS
 
 on:
+  workflow_dispatch:
   # push:
   #   branches:
   #     - main
-#   pull_request:
-#     branches:
-#       - main
+  # pull_request:
+  #   branches:
+  #     - main
   schedule:
     - cron: '05 15 * * *'
 

@@ -1,6 +1,7 @@
 name: Playwright Tests on Ubuntu
 
 on:
+  workflow_dispatch:
 #   push:
 #     branches:
 #       - main
@@ -8,7 +9,7 @@ on:
 #     branches:
 #       - main
   schedule:
-    - cron: '00 15 * * *'  # Runs at 15:00 UTC every day
+    - cron: '00 15 * * *'
 
 jobs:
   test-linux:

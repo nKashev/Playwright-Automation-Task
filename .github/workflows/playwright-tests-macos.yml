@@ -8,8 +8,8 @@ on:
   # pull_request:
   #   branches:
   #     - main
-  schedule:
-    - cron: '05 15 * * *'
+  #schedule:
+  #  - cron: '05 15 * * *'
 
 jobs:
   test-macos:

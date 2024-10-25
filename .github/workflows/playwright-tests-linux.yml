@@ -9,7 +9,7 @@ on:
 #     branches:
 #       - main
 #  schedule:
-#    - cron: '00 15 * * *'
+   - cron: '00 15 * * *'
 
 jobs:
   test-linux:

@@ -30,7 +30,6 @@ async function sortHackerNewsArticles() {
   let articles = [];
 
   while (articles.length < 100) {
-    // Extract both rows (the title row and the next sibling row)
     const pageArticles = await page.$$eval('tr.athing', (rows) => {
       return rows.map(row => {
         // Find the next row, which contains the article metadata
@@ -39,22 +38,25 @@ async function sortHackerNewsArticles() {
           console.log("Missing metadata row for article");
           return null;
         }
-
+    
         // Find the age element in the second row
         const ageElement = nextRow.querySelector('.age');
         if (!ageElement) {
           console.log("Missing age element for article");
           return null;
         }
-
-        // Extract the date from the title attribute in <span>
+    
+        // Extract the title attribute from the age element
         const ageTitle = ageElement.getAttribute('title');
         if (!ageTitle) {
           console.log("Missing title attribute in .age element");
           return null;
         }
-        
-        return { age: ageTitle };
+    
+        // Extract only the date part from the title attribute (ignoring the Unix timestamp)
+        const dateString = ageTitle.split(" ")[0];
+    
+        return { age: dateString };
       }).filter(article => article !== null);
     });
 
@@ -77,7 +79,7 @@ async function sortHackerNewsArticles() {
   console.log("Extracted article dates:", articles);
 
   let isSorted = true;
-  for (let i = 0; i < articles.length-1; i++) {
+  for (let i=0; i < articles.length-1; i++) {
     const currentArticleDate = new Date(articles[i].age);
     const nextArticleDate = new Date(articles[i+1].age);
 

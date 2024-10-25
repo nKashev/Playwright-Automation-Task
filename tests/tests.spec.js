@@ -11,9 +11,19 @@ test('Validate that Hacker News articles are sorted correctly', async ({ page })
     const pageArticles = await page.$$eval('tr.athing', (rows) => {
       return rows.map(row => {
         const nextRow = row.nextElementSibling;
+        if (!nextRow) return null;
+
         const ageElement = nextRow.querySelector('.age');
+        if (!ageElement) return null;
+
+        // Extract only the date part from the title attribute
         const ageTitle = ageElement.getAttribute('title');
-        return { age: ageTitle };
+        if (!ageTitle) return null;
+
+        // Capture only the date portion (ignoring Unix timestamp)
+        const dateString = ageTitle.split(" ")[0]; 
+
+        return { age: dateString };
       }).filter(article => article !== null);
     });
 
@@ -34,9 +44,9 @@ test('Validate that Hacker News articles are sorted correctly', async ({ page })
 
   // Check if articles are sorted from newest to oldest
   let isSorted = true;
-  for (let i = 0; i < articles.length-1; i++) {
+  for (let i = 0; i < articles.length - 1; i++) {
     const currentArticleDate = new Date(articles[i].age);
-    const nextArticleDate = new Date(articles[i+1].age);
+    const nextArticleDate = new Date(articles[i + 1].age);
 
     if (isNaN(currentArticleDate.getTime()) || isNaN(nextArticleDate.getTime())) {
       isSorted = false;

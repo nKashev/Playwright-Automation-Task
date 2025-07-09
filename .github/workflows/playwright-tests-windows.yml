@@ -8,8 +8,8 @@ on:
   # pull_request:
   #   branches:
   #     - main
-  schedule:
-   - cron: '10 15 * * *'
+  # schedule:
+  #  - cron: '10 15 * * *'
 
 jobs:
   test-windows:

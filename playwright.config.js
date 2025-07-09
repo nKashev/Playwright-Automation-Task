@@ -64,11 +64,13 @@ module.exports = defineConfig({
     /* Test against branded browsers. */
     {
       name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge', headless: true },
+      // use: { ...devices['Desktop Edge'], channel: 'msedge', headless: true },
+      use: { ...devices['Desktop Edge'] },
     },
     {
       name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome', headless: true },
+      // use: { ...devices['Desktop Chrome'], channel: 'chrome', headless: true },
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 

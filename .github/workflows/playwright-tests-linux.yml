@@ -2,14 +2,14 @@ name: Playwright Tests on Ubuntu
 
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
-  schedule:
-   - cron: '00 15 * * *'
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
+  # schedule:
+  #  - cron: '00 15 * * *'
 
 jobs:
   test-linux:
